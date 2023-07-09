@@ -1,4 +1,3 @@
-import React from 'react';
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 import { AlignJustify } from 'lucide-react';
 
@@ -74,14 +73,19 @@ export function DropDown() {
                         </DropdownMenu.Portal>
                     </DropdownMenu.Sub>
 
-                    <DropdownMenu.Separator className="h-[1px] bg-violet6 m-[5px]" />
-
-
-
-                    <DropdownMenu.Separator className="h-[1px] bg-violet6 m-[5px]" />
+                    <DropdownMenu.Separator className="h-[1px] bg-black m-[5px]" />
 
                     <DropdownMenu.Label className="pl-[25px] text-xs leading-[25px] text-mauve11">
                         <button>Registrar</button>
+                    </DropdownMenu.Label>
+                    <DropdownMenu.Label className="pl-[25px] text-xs leading-[25px] text-mauve11">
+                        <button>Alterar</button>
+                    </DropdownMenu.Label>
+                    <DropdownMenu.Label className="pl-[25px] text-xs leading-[25px] text-mauve11">
+                        <button>Excluir</button>
+                    </DropdownMenu.Label>
+                    <DropdownMenu.Label className="pl-[25px] text-xs leading-[25px] text-mauve11">
+                        <button>Sair</button>
                     </DropdownMenu.Label>
 
                     <DropdownMenu.Arrow className="fill-white" />
