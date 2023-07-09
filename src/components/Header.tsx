@@ -16,7 +16,7 @@ export function Header() {
                         return (
                             <>
                                 <Link to={element.path}>
-                                    <button className="text-white font-semibold text-xl bg-zinc-500 rounded p-2">{element.Text}</button>
+                                    <button className="text-white font-semibold text-xl bg-zinc-500 rounded p-2 hover:bg-zinc-700">{element.Text}</button>
                                 </Link>
                             </>
                         )

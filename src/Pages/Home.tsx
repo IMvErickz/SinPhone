@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Header } from "../components/Header";
 import { PhoneButton } from "../components/PhoneButton";
 import { InputColor } from "../components/InputColor";
+import { Delete, FunctionSquareIcon } from "lucide-react";
 
 export function Home() {
     const [numbers, setNumbers] = useState('')
@@ -30,20 +31,26 @@ export function Home() {
                 <Header />
             </section>
             <section className="w-full flex flex-col items-center justify-center gap-y-4">
-                <input type="text" className="p-4 rounded-xl text-xl font-semibold" value={numbers} />
+                <div className="w-full flex flex-row items-center justify-center">
+                    <input type="text" className="p-4 rounded-xl text-xl font-semibold focus:border-[0px]" onChange={event => setNumbers(event.target.value)} value={numbers} />
+                    {/* <button id="button" className="bg-white p-[18px] rounded-r-xl hover:bg-zinc-500"><Delete /></button> */}
+                </div>
                 <div className=" gap-4 items-center justify-center grid grid-cols-3 grid-flow-row">
                     {number.map(number => {
                         return (
                             number.Number == 'Limpar'
                                 ?
-                                <PhoneButton Number={number.Number} onClick={() => setNumbers(numbers + number.Number)} />
+                                <PhoneButton Number={number.Number} onClick={() => setNumbers('')} />
                                 :
                                 <PhoneButton Number={number.Number} onClick={() => setNumbers(numbers + number.Number)} />
                         )
                     })}
                 </div>
                 <div>
-                    <button className="bg-green-600 p-4 rounded-lg text-white font-semibold hover:bg-green-400 hover:text-black">Chamar</button>
+                    <button
+                        className="bg-green-600 p-4 rounded-lg text-white font-semibold hover:bg-green-400 hover:text-black"
+                        onClick={() => console.log(numbers)}
+                    >Chamar</button>
                 </div>
             </section>
         </main>
