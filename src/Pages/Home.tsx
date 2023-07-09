@@ -3,6 +3,7 @@ import { Header } from "../components/Header";
 import { PhoneButton } from "../components/PhoneButton";
 import { InputColor } from "../components/InputColor";
 import { Delete, FunctionSquareIcon } from "lucide-react";
+import { DropDown } from "../components/DropDown";
 
 export function Home() {
     const [numbers, setNumbers] = useState('')
@@ -24,8 +25,9 @@ export function Home() {
 
     return (
         <main className="w-screen h-screen flex flex-col items-center justify-center bg-zinc-800 gap-y-4">
-            <section className="w-full flex flex-col items-center justify-center">
+            <section className="w-full flex flex-row items-center justify-center gap-x-4">
                 <h1 className="text-white font-bold text-4xl">Erick Santos - Sinapse</h1>
+                <DropDown />
             </section>
             <section className="w-full">
                 <Header />
