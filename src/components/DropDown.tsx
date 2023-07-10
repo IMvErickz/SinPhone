@@ -1,5 +1,6 @@
 import * as DropdownMenu from '@radix-ui/react-dropdown-menu';
 import { AlignJustify } from 'lucide-react';
+import { ModalRegister } from './register/Modal';
 
 export function DropDown() {
 
@@ -76,7 +77,7 @@ export function DropDown() {
                     <DropdownMenu.Separator className="h-[1px] bg-black m-[5px]" />
 
                     <DropdownMenu.Label className="pl-[25px] text-xs leading-[25px] text-mauve11">
-                        <button>Registrar</button>
+                        <ModalRegister />
                     </DropdownMenu.Label>
                     <DropdownMenu.Label className="pl-[25px] text-xs leading-[25px] text-mauve11">
                         <button>Alterar</button>

@@ -1,10 +1,17 @@
-import { useState } from "react";
+import { ChangeEvent, useState } from "react";
 import { Header } from "../components/Header";
 import { PhoneButton } from "../components/PhoneButton";
 import { DropDown } from "../components/DropDown";
 
 export function Home() {
     const [numbers, setNumbers] = useState('')
+    const [oi, setOi] = useState('')
+
+
+    // if (numbers.length >= 9) {
+    //     const audio = new Audio('../../mixkit-arcade-retro-game-over-213.wav')
+    //     audio.play()
+    // }
 
     const number = [
         { Number: '1' },
@@ -49,7 +56,7 @@ export function Home() {
                 <div>
                     <button
                         className="bg-green-600 p-4 rounded-lg text-white font-semibold hover:bg-green-400 hover:text-black"
-                        onClick={() => console.log(numbers)}
+
                     >Chamar</button>
                 </div>
             </section>
