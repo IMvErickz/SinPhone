@@ -1,12 +1,31 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, ReactNode, useState } from "react";
 import { Header } from "../components/Header";
 import { PhoneButton } from "../components/PhoneButton";
 import { DropDown } from "../components/DropDown";
+import { Mic, MicOff, Volume2, VolumeX } from "lucide-react";
 
 export function Home() {
     const [numbers, setNumbers] = useState('')
-    const [oi, setOi] = useState('')
 
+    const [mic, setMic] = useState<ReactNode>(<Mic />)
+    const [sound, setSound] = useState<ReactNode>(<Volume2 />)
+
+
+    function muteMic() {
+        setMic(<MicOff />)
+    }
+
+    function micOn() {
+        setMic(<Mic />)
+    }
+
+    function muteSound() {
+        setSound(<VolumeX />)
+    }
+
+    function soundOn() {
+        setSound(<Volume2 />)
+    }
 
     // if (numbers.length >= 9) {
     //     const audio = new Audio('../../mixkit-arcade-retro-game-over-213.wav')
@@ -53,11 +72,28 @@ export function Home() {
                         )
                     })}
                 </div>
-                <div>
+                <div className="w-full flex flex-row items-center justify-center space-x-4">
+                    <button
+                        className="bg-slate-600 p-4 rounded-lg text-white font-semibold hover:bg-slate-500"
+                        onClick={() => muteSound()}
+                        onMouseDown={() => soundOn()}
+                    >
+                        {sound}
+                    </button>
+
                     <button
                         className="bg-green-600 p-4 rounded-lg text-white font-semibold hover:bg-green-400 hover:text-black"
+                    >
+                        Chamar
+                    </button>
 
-                    >Chamar</button>
+                    <button
+                        className="bg-slate-600 p-4 rounded-lg text-white font-semibold hover:bg-slate-500"
+                        onClick={() => muteMic()}
+                        onMouseDown={() => micOn()}
+                    >
+                        {mic}
+                    </button>
                 </div>
             </section>
         </main>
