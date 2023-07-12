@@ -1,13 +1,16 @@
 import * as Dialog from '@radix-ui/react-dialog';
-import { ChangeEvent, useState } from 'react';
+import { ChangeEvent, FormEvent, useState } from 'react';
+import { api } from '../../utils/lib/axios';
 
 export function ModalRegister() {
 
     const [name, setName] = useState('')
-    const [branch, setBranch] = useState('')
+    const [branch, setBranch] = useState(Number)
     const [password, setPassword] = useState('')
     const [host, setHost] = useState('')
     const [status, setStatus] = useState('')
+
+    const adm = false
 
 
 
@@ -18,7 +21,7 @@ export function ModalRegister() {
         },
         {
             Label: 'Ramal',
-            InputFunction: (event: ChangeEvent<HTMLInputElement>) => setBranch(event.target.value)
+            InputFunction: (event: ChangeEvent<HTMLInputElement>) => setBranch(event.target.valueAsNumber)
         },
         {
             Label: 'Senha',
@@ -29,6 +32,22 @@ export function ModalRegister() {
             InputFunction: (event: ChangeEvent<HTMLInputElement>) => setHost(event.target.value)
         },
     ]
+
+    async function handleCreateUser(event: FormEvent) {
+        event.preventDefault()
+
+        try {
+            await api.post('/user', {
+                Name: name,
+                Branch: branch,
+                Adm: adm,
+                Password: password,
+                Host: host
+            })
+        } catch (err) {
+            throw err
+        }
+    }
 
     return (
         <Dialog.Root>
@@ -43,27 +62,33 @@ export function ModalRegister() {
                     <Dialog.Title className="text-white text-2xl m-0 text-[17px] font-medium flex items-center justify-center">
                         Novo Perfil
                     </Dialog.Title>
-                    <fieldset className="mb-[15px] flex flex-col items-center gap-5 pt-8">
-                        {inputs.map(input => {
-                            return (
-                                <form className='w-full h-full flex flex-row items-center justify-center'>
-                                    <div className='w-full flex items-start justify-start'>
-                                        <label className='text-white'>{input.Label}</label>
+                    <form onSubmit={handleCreateUser}>
+                        <fieldset className="mb-[15px] flex flex-col items-center gap-5 pt-8">
+                            {inputs.map(input => {
+                                return (
+                                    <div className='w-full h-full flex flex-row items-center justify-center'>
+                                        <div className='w-full flex items-start justify-start'>
+                                            <label className='text-white'>{input.Label}</label>
+                                        </div>
+                                        <div className='w-full flex items-end justify-center'>
+                                            {input.Label == 'Ramal' ?
+                                                <input className='p-1 rounded-lg appearance-none' type="number" onChange={input.InputFunction} />
+                                                :
+                                                <input className='p-1 rounded-lg' type="text" onChange={input.InputFunction} />
+                                            }
+                                        </div>
                                     </div>
-                                    <div className='w-full flex items-end justify-center'>
-                                        <input className='p-1 rounded-lg' type="text" onChange={input.InputFunction} />
-                                    </div>
-                                </form>
-                            )
-                        })}
-                    </fieldset>
-                    <div className="mt-[25px] flex justify-center">
-                        <section className='w-full flex items-center justify-center'>
-                            <button type='submit' className="bg-green-500 w-32 rounded-lg text-white hover:bg-green-800 focus:shadow-green7 inline-flex h-[35px] items-center justify-center px-[15px] font-medium leading-none focus:shadow-[0_0_0_2px] focus:outline-none">
-                                Salvar
-                            </button>
-                        </section>
-                    </div>
+                                )
+                            })}
+                        </fieldset>
+                        <div className="mt-[25px] flex justify-center">
+                            <section className='w-full flex items-center justify-center'>
+                                <button type='submit' className="bg-green-500 w-32 rounded-lg text-white hover:bg-green-800 focus:shadow-green7 inline-flex h-[35px] items-center justify-center px-[15px] font-medium leading-none focus:shadow-[0_0_0_2px] focus:outline-none">
+                                    Salvar
+                                </button>
+                            </section>
+                        </div>
+                    </form>
                     <Dialog.Close asChild>
                         <button
                             className="text-violet11 hover:bg-violet4 focus:shadow-violet7 absolute top-[10px] right-[10px] inline-flex h-[25px] w-[25px] appearance-none items-center justify-center rounded-full focus:shadow-[0_0_0_2px] focus:outline-none"
